@@ -160,7 +160,7 @@ export default function Home() {
         </p>
 
         <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLScq7YQO6EcBm_HRLvCgKWMtRFGa-Znt88kVYhfOpRXIujEhDA/viewform"
+          href="https://calendly.com/fatimafarhat779/30min"
           target="_blank"
           className="bg-white text-[#f97316] px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition transform hover:scale-105"
         >
