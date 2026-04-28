@@ -214,7 +214,7 @@ export default function Home() {
         url="https://calendly.com/fatimafarhat779/30min"
         onModalClose={() => setOpen(false)}
         open={open}
-        rootElement={document.body}
+        rootElement={typeof window !== "undefined" ? document.body : undefined}
       />
 
     </main>
