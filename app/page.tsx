@@ -199,7 +199,7 @@ export default function Home() {
 
           {/* Email */}
           <a
-            href="mailto:fatima@example.com"
+            href="mailto:Fatimafarhat779@gmail.com"
             className="bg-gray-800 text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition"
           >
             Email
