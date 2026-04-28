@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { PopupModal } from "react-calendly";
 
 export default function Home() {
-
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     const elements = document.querySelectorAll(".fade-in");
 
     const observer = new IntersectionObserver(
@@ -209,13 +211,15 @@ export default function Home() {
 
       </section>
 
-      {/* CALENDLY POPUP */}
-      <PopupModal
-        url="https://calendly.com/fatimafarhat779/30min"
-        onModalClose={() => setOpen(false)}
-        open={open}
-        rootElement={typeof window !== "undefined" ? document.body : undefined}
-      />
+      {/* CALENDLY POPUP (SAFE) */}
+      {mounted && (
+        <PopupModal
+          url="https://calendly.com/fatimafarhat779/30min"
+          onModalClose={() => setOpen(false)}
+          open={open}
+          rootElement={document.body}
+        />
+      )}
 
     </main>
   );
