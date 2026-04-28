@@ -58,7 +58,7 @@ export default function Home() {
 
         <div className="flex justify-center gap-4 mb-14">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScq7YQO6EcBm_HRLvCgKWMtRFGa-Znt88kVYhfOpRXIujEhDA/viewform"
+            href="https://calendly.com/fatimafarhat779/30min"
             target="_blank"
             className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:bg-[#ea580c] transition transform hover:scale-105"
           >
