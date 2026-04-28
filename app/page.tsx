@@ -35,9 +35,12 @@ export default function Home() {
             <a href="#booking" className="hover:text-[#f97316]">Booking</a>
           </div>
 
-          <button className="bg-[#f97316] text-white px-4 py-2 rounded-lg hover:bg-[#ea580c] transition">
+          <a
+            href="#booking"
+            className="bg-[#f97316] text-white px-4 py-2 rounded-lg hover:bg-[#ea580c]"
+          >
             Book Trial
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -58,16 +61,18 @@ export default function Home() {
 
         <div className="flex justify-center gap-4 mb-14">
           <a
-            href="https://calendly.com/fatimafarhat779/30min"
-            target="_blank"
+            href="#booking"
             className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:bg-[#ea580c] transition transform hover:scale-105"
           >
             Book Free Trial
           </a>
 
-          <button className="border px-6 py-3 rounded-xl hover:bg-gray-100 transition">
-            Learn More
-          </button>
+          <a
+            href="#contact"
+            className="border px-6 py-3 rounded-xl hover:bg-gray-100 transition"
+          >
+            Contact
+          </a>
         </div>
 
         <div className="flex justify-center gap-14">
@@ -148,24 +153,59 @@ export default function Home() {
 
       </section>
 
-      {/* BOOKING */}
+      {/* BOOKING (Calendly Embedded) */}
       <section id="booking" className="bg-[#f97316] text-white py-20 px-6 text-center fade-in">
 
         <h2 className="text-3xl font-bold mb-4">
-          Ready to Transform Your English?
+          Book Your Free Trial
         </h2>
 
         <p className="mb-8">
-          Start with a free trial session.
+          Choose your preferred date and time directly below.
         </p>
 
-        <a
-          href="https://calendly.com/fatimafarhat779/30min"
-          target="_blank"
-          className="bg-white text-[#f97316] px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition transform hover:scale-105"
-        >
-          Book Your Free Trial
-        </a>
+        <div className="bg-white rounded-xl overflow-hidden max-w-4xl mx-auto">
+          <iframe
+            src="https://calendly.com/fatimafarhat779/30min"
+            width="100%"
+            height="700"
+            className="border-none"
+          ></iframe>
+        </div>
+
+      </section>
+
+      {/* CONTACT SECTION */}
+      <section id="contact" className="py-20 px-6 text-center fade-in">
+
+        <h2 className="text-3xl font-bold mb-6">
+          Get in Touch
+        </h2>
+
+        <p className="text-gray-600 mb-8">
+          Have questions? Contact directly via WhatsApp or Email.
+        </p>
+
+        <div className="flex justify-center gap-6">
+
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/9613917624"
+            target="_blank"
+            className="bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600 transition"
+          >
+            WhatsApp
+          </a>
+
+          {/* Email */}
+          <a
+            href="mailto:fatima@example.com"
+            className="bg-gray-800 text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition"
+          >
+            Email
+          </a>
+
+        </div>
 
       </section>
 
