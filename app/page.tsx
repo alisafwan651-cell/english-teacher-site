@@ -1,7 +1,11 @@
 "use client";
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
+import { PopupModal } from "react-calendly";
 
 export default function Home() {
+
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const elements = document.querySelectorAll(".fade-in");
@@ -32,15 +36,15 @@ export default function Home() {
             <a href="#home" className="hover:text-[#f97316]">Home</a>
             <a href="#about" className="hover:text-[#f97316]">About</a>
             <a href="#services" className="hover:text-[#f97316]">Services</a>
-            <a href="#booking" className="hover:text-[#f97316]">Booking</a>
+            <a href="#contact" className="hover:text-[#f97316]">Contact</a>
           </div>
 
-          <a
-            href="#booking"
+          <button
+            onClick={() => setOpen(true)}
             className="bg-[#f97316] text-white px-4 py-2 rounded-lg hover:bg-[#ea580c]"
           >
             Book Trial
-          </a>
+          </button>
         </div>
       </nav>
 
@@ -60,12 +64,12 @@ export default function Home() {
         </p>
 
         <div className="flex justify-center gap-4 mb-14">
-          <a
-            href="#booking"
+          <button
+            onClick={() => setOpen(true)}
             className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:bg-[#ea580c] transition transform hover:scale-105"
           >
             Book Free Trial
-          </a>
+          </button>
 
           <a
             href="#contact"
@@ -134,17 +138,17 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
 
-          <div className="card p-6 rounded-xl border">
+          <div className="p-6 rounded-xl border hover:shadow-md transition">
             <h3 className="font-bold mb-2">General English</h3>
             <p className="text-gray-600">Daily communication skills.</p>
           </div>
 
-          <div className="card p-6 rounded-xl border">
+          <div className="p-6 rounded-xl border hover:shadow-md transition">
             <h3 className="font-bold mb-2">Business English</h3>
             <p className="text-gray-600">Professional communication.</p>
           </div>
 
-          <div className="card p-6 rounded-xl border">
+          <div className="p-6 rounded-xl border hover:shadow-md transition">
             <h3 className="font-bold mb-2">Exam Preparation</h3>
             <p className="text-gray-600">IELTS, TOEFL, etc.</p>
           </div>
@@ -153,29 +157,27 @@ export default function Home() {
 
       </section>
 
-      {/* BOOKING (Calendly Embedded) */}
-      <section id="booking" className="bg-[#f97316] text-white py-20 px-6 text-center fade-in">
+      {/* BOOKING CTA */}
+      <section className="bg-[#f97316] text-white py-20 px-6 text-center fade-in">
 
         <h2 className="text-3xl font-bold mb-4">
-          Book Your Free Trial
+          Ready to Transform Your English?
         </h2>
 
         <p className="mb-8">
-          Choose your preferred date and time directly below.
+          Start with a free trial session.
         </p>
 
-        <div className="bg-white rounded-xl overflow-hidden max-w-4xl mx-auto">
-          <iframe
-            src="https://calendly.com/fatimafarhat779/30min"
-            width="100%"
-            height="700"
-            className="border-none"
-          ></iframe>
-        </div>
+        <button
+          onClick={() => setOpen(true)}
+          className="bg-white text-[#f97316] px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition transform hover:scale-105"
+        >
+          Book Your Free Trial
+        </button>
 
       </section>
 
-      {/* CONTACT SECTION */}
+      {/* CONTACT */}
       <section id="contact" className="py-20 px-6 text-center fade-in">
 
         <h2 className="text-3xl font-bold mb-6">
@@ -188,7 +190,6 @@ export default function Home() {
 
         <div className="flex justify-center gap-6">
 
-          {/* WhatsApp */}
           <a
             href="https://wa.me/9613917624"
             target="_blank"
@@ -197,7 +198,6 @@ export default function Home() {
             WhatsApp
           </a>
 
-          {/* Email */}
           <a
             href="mailto:Fatimafarhat779@gmail.com"
             className="bg-gray-800 text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition"
@@ -208,6 +208,14 @@ export default function Home() {
         </div>
 
       </section>
+
+      {/* CALENDLY POPUP */}
+      <PopupModal
+        url="https://calendly.com/fatimafarhat779/30min"
+        onModalClose={() => setOpen(false)}
+        open={open}
+        rootElement={document.body}
+      />
 
     </main>
   );
