@@ -1,31 +1,16 @@
 @import "tailwindcss";
 
-/* Default (LIGHT MODE) */
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-/* DARK MODE (controlled by class, NOT system) */
-.dark {
-  --background: #0b0b0f;
-  --foreground: #ededed;
-}
-
-/* Apply theme */
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Animations */
+body {
+  background: #f9f7f4;
+  color: #171717;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* animations */
 .fade-in {
   opacity: 0;
   transform: translateY(40px);
@@ -37,12 +22,12 @@ html {
   transform: translateY(0);
 }
 
-/* Card hover effect */
+/* hover cards */
 .card {
   transition: all 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
