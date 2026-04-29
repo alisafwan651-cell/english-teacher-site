@@ -9,11 +9,12 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
+  // mount check
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // ✅ DARK MODE FIX
+  // load theme
   useEffect(() => {
     const saved = localStorage.getItem("theme");
 
@@ -32,22 +33,27 @@ export default function Home() {
     }
   }, []);
 
+  // FIXED toggle
   const toggleTheme = () => {
-    if (darkMode) {
-      document.documentElement.classList.remove("dark");
+    const root = document.documentElement;
+    const isDark = root.classList.contains("dark");
+
+    if (isDark) {
+      root.classList.remove("dark");
       localStorage.setItem("theme", "light");
+      setDarkMode(false);
     } else {
-      document.documentElement.classList.add("dark");
+      root.classList.add("dark");
       localStorage.setItem("theme", "dark");
+      setDarkMode(true);
     }
-    setDarkMode(!darkMode);
   };
 
   return (
     <main className="bg-[#f9f7f4] dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-all duration-500">
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 w-full bg-white dark:bg-black border-b z-50 shadow-sm transition">
+      <nav className="fixed top-0 left-0 w-full bg-white dark:bg-[#0a0a0a] border-b border-gray-200 dark:border-gray-800 z-50 shadow-sm transition">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-4 md:px-6 py-4">
 
           <h1 className="font-bold text-sm md:text-lg">
@@ -62,7 +68,7 @@ export default function Home() {
           </div>
 
           <div className="flex gap-3 items-center">
-            {/* 🌗 Toggle */}
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               className="border px-3 py-2 rounded-lg hover:scale-110 transition"
@@ -72,7 +78,7 @@ export default function Home() {
 
             <button
               onClick={() => setOpen(true)}
-              className="bg-[#f97316] text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base"
+              className="bg-[#f97316] text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base hover:bg-[#ea580c]"
             >
               Book Trial
             </button>
@@ -106,7 +112,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-gray-600 dark:text-gray-300 mb-10 px-2 md:px-0"
+          className="text-gray-600 dark:text-gray-300 mb-10"
         >
           Master English with 11 years of expert teaching experience.
         </motion.p>
@@ -114,7 +120,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-center gap-4 mb-12">
           <button
             onClick={() => setOpen(true)}
-            className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:bg-[#ea580c] transition transform hover:scale-105"
+            className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:bg-[#ea580c] transition transform hover:scale-105 shadow-md hover:shadow-orange-500/30"
           >
             Book Free Trial
           </button>
@@ -158,7 +164,7 @@ export default function Home() {
             11 years helping students succeed with personalized lessons.
           </p>
 
-          <ul className="space-y-2 text-sm md:text-base">
+          <ul className="space-y-2">
             <li>✓ Expert in Communication</li>
             <li>✓ Personalized Teaching</li>
             <li>✓ Flexible Scheduling</li>
@@ -173,6 +179,7 @@ export default function Home() {
 
       {/* SERVICES */}
       <section id="services" className="bg-white dark:bg-[#111] py-16 md:py-20 px-6">
+
         <div className="text-center mb-12">
           <p className="text-[#f97316] font-semibold mb-2">SERVICES</p>
           <h2 className="text-2xl md:text-3xl font-bold">
@@ -181,51 +188,48 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
           {["General English", "Business English", "Exam Preparation"].map((title, i) => (
-            <motion.div key={i} whileHover={{ scale: 1.05 }} className="p-6 rounded-xl border dark:border-gray-700 hover:shadow-lg transition">
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-xl border dark:border-gray-700 hover:shadow-lg hover:shadow-orange-500/10 transition"
+            >
               <h3 className="font-bold mb-2">{title}</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">
                 High-quality personalized lessons.
               </p>
             </motion.div>
           ))}
-        </div>
-      </section>
 
-      {/* TESTIMONIALS (BACK 🔥) */}
-      <section className="py-16 md:py-20 px-6 text-center bg-white dark:bg-[#0f0f0f]">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10">
-          What Students Say
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {[
-            "Amazing teacher, I improved fast!",
-            "Very professional and clear explanations.",
-            "Helped me pass my IELTS exam."
-          ].map((text, i) => (
-            <div key={i} className="p-6 border dark:border-gray-700 rounded-xl">
-              <p>"{text}"</p>
-            </div>
-          ))}
         </div>
       </section>
 
       {/* CONTACT */}
       <section id="contact" className="py-16 md:py-20 px-6 text-center">
+
         <h2 className="text-2xl md:text-3xl font-bold mb-6">
           Get in Touch
         </h2>
 
         <div className="flex flex-col md:flex-row justify-center gap-4">
-          <a href="https://wa.me/9613917624" className="bg-green-500 text-white px-6 py-3 rounded-xl">
+
+          <a
+            href="https://wa.me/9613917624"
+            className="bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600"
+          >
             WhatsApp
           </a>
 
-          <a href="mailto:Fatimafarhat779@gmail.com" className="bg-gray-800 text-white px-6 py-3 rounded-xl">
+          <a
+            href="mailto:Fatimafarhat779@gmail.com"
+            className="bg-gray-800 text-white px-6 py-3 rounded-xl hover:bg-black"
+          >
             Email
           </a>
+
         </div>
+
       </section>
 
       {/* FLOATING BUTTON */}
