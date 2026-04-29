@@ -9,136 +9,145 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
-  // Detect system theme first time
+  // Mount fix (for Calendly)
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-
-    if (saved) {
-      setDarkMode(saved === "dark");
-    } else {
-      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setDarkMode(systemDark);
-    }
-
     setMounted(true);
   }, []);
 
-  // Apply theme + smooth transition
+  // 🌗 THEME SYSTEM (FIXED)
   useEffect(() => {
-    const root = document.documentElement;
+    const saved = localStorage.getItem("theme");
 
-    root.style.transition = "background-color 0.4s ease, color 0.4s ease";
-
-    if (darkMode) {
-      root.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+    if (saved === "dark") {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
+    } else if (saved === "light") {
+      document.documentElement.classList.remove("dark");
+      setDarkMode(false);
     } else {
-      root.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (prefersDark) {
+        document.documentElement.classList.add("dark");
+        setDarkMode(true);
+      }
     }
-  }, [darkMode]);
+  }, []);
+
+  const toggleTheme = () => {
+    if (darkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+    setDarkMode(!darkMode);
+  };
 
   return (
-    <main className="bg-white text-black dark:bg-[#0b0b0f] dark:text-white">
+    <main className="bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-white transition-all duration-500">
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 w-full bg-white dark:bg-black border-b z-50">
-        <div className="max-w-6xl mx-auto flex justify-between items-center px-4 md:px-6 py-4">
+      <nav className="fixed top-0 w-full bg-white dark:bg-black border-b z-50 shadow-sm transition">
+        <div className="max-w-6xl mx-auto flex justify-between items-center px-4 py-4">
 
-          <h1 className="font-bold text-sm md:text-lg">
-            Ms. Fatima Farhat
-          </h1>
+          <h1 className="font-bold text-lg">Ms. Fatima Farhat</h1>
 
           <div className="hidden md:flex gap-6 text-sm">
-            <a href="#home" className="hover:text-[#f97316]">Home</a>
-            <a href="#about" className="hover:text-[#f97316]">About</a>
-            <a href="#services" className="hover:text-[#f97316]">Services</a>
-            <a href="#contact" className="hover:text-[#f97316]">Contact</a>
+            <a href="#home" className="hover:text-orange-500">Home</a>
+            <a href="#about" className="hover:text-orange-500">About</a>
+            <a href="#services" className="hover:text-orange-500">Services</a>
+            <a href="#contact" className="hover:text-orange-500">Contact</a>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex gap-3 items-center">
 
-            {/* DARK MODE BUTTON */}
+            {/* 🌗 Theme Toggle */}
             <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="border px-3 py-2 rounded-lg text-sm"
+              onClick={toggleTheme}
+              className="border px-3 py-2 rounded-lg hover:scale-110 transition"
             >
-              {darkMode ? "☀️" : "🌙"}
+              {darkMode ? "🌙" : "☀️"}
             </button>
 
+            {/* CTA */}
             <button
               onClick={() => setOpen(true)}
-              className="bg-[#f97316] text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base"
+              className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
             >
               Book Trial
             </button>
+
           </div>
         </div>
       </nav>
 
       {/* HERO */}
-      <section id="home" className="text-center px-6 pt-28 md:pt-32 pb-20 max-w-4xl mx-auto">
+      <section id="home" className="text-center pt-32 pb-20 px-6 max-w-4xl mx-auto">
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl md:text-6xl font-bold mb-6"
+          className="text-4xl md:text-6xl font-bold mb-6"
         >
           Ms. Fatima Farhat
         </motion.h1>
 
-        <h2 className="text-lg md:text-xl text-[#f97316] mb-6">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="text-lg md:text-xl text-orange-500 mb-6"
+        >
           Your English Guide
-        </h2>
+        </motion.h2>
 
-        <p className="text-gray-600 dark:text-gray-400 mb-10">
+        <p className="text-gray-600 dark:text-gray-300 mb-10">
           Master English with 11 years of expert teaching experience.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center gap-4 mb-12">
           <button
             onClick={() => setOpen(true)}
-            className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:scale-105 transition"
+            className="bg-orange-500 text-white px-6 py-3 rounded-xl hover:scale-105 transition"
           >
             Book Free Trial
           </button>
 
           <a
             href="#contact"
-            className="border px-6 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            className="border px-6 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             Contact
           </a>
         </div>
 
-        <div className="flex justify-center gap-6 md:gap-14">
+        <div className="flex justify-center gap-10 text-center">
           <div>
-            <p className="text-xl md:text-2xl font-bold">11+</p>
-            <p className="text-gray-500 text-xs">Years</p>
+            <p className="text-2xl font-bold">11+</p>
+            <p className="text-sm text-gray-500">Years</p>
           </div>
           <div>
-            <p className="text-xl md:text-2xl font-bold">200+</p>
-            <p className="text-gray-500 text-xs">Students</p>
+            <p className="text-2xl font-bold">200+</p>
+            <p className="text-sm text-gray-500">Students</p>
           </div>
           <div>
-            <p className="text-xl md:text-2xl font-bold">100%</p>
-            <p className="text-gray-500 text-xs">Success</p>
+            <p className="text-2xl font-bold">100%</p>
+            <p className="text-sm text-gray-500">Success</p>
           </div>
         </div>
+
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+      <section id="about" className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
 
-        <div>
-          <p className="text-[#f97316] font-semibold mb-2">ABOUT ME</p>
-
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Your Path to English Mastery
-          </h2>
-
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+        >
+          <h2 className="text-3xl font-bold mb-4">Your Path to English Mastery</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-6">
             11 years helping students succeed with personalized lessons.
           </p>
 
@@ -147,71 +156,58 @@ export default function Home() {
             <li>✓ Personalized Teaching</li>
             <li>✓ Flexible Scheduling</li>
           </ul>
-        </div>
+        </motion.div>
 
-        <img src="/fatima.jpg" className="rounded-2xl shadow-xl w-full max-w-[320px] mx-auto" />
+        <motion.img
+          src="/fatima.jpg"
+          className="rounded-2xl shadow-xl w-full max-w-[350px] mx-auto"
+        />
 
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="bg-white dark:bg-[#0b0b0f] py-16 px-6">
+      <section id="services" className="py-20 px-6">
 
         <div className="text-center mb-12">
-          <p className="text-[#f97316] font-semibold mb-2">SERVICES</p>
-          <h2 className="text-2xl md:text-3xl font-bold">
-            English Lessons for Every Goal
-          </h2>
+          <h2 className="text-3xl font-bold">English Lessons for Every Goal</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
           {["General English", "Business English", "Exam Preparation"].map((title, i) => (
-            <div key={i} className="p-6 rounded-xl border dark:border-gray-700 hover:shadow-lg transition">
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="p-6 rounded-xl border dark:border-gray-700 hover:shadow-xl transition"
+            >
               <h3 className="font-bold mb-2">{title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
+              <p className="text-gray-600 dark:text-gray-300">
                 High-quality personalized lessons.
               </p>
-            </div>
+            </motion.div>
           ))}
+
         </div>
 
       </section>
 
-      {/* CTA */}
-      <section className="bg-[#f97316] text-white py-16 px-6 text-center">
+      {/* CONTACT */}
+      <section id="contact" className="py-20 text-center">
 
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
-          Ready to Transform Your English?
-        </h2>
-
-        <button
-          onClick={() => setOpen(true)}
-          className="bg-white text-[#f97316] px-6 py-3 rounded-xl font-semibold"
-        >
-          Book Your Free Trial
-        </button>
-
-      </section>
-
-      {/* CONTACT (FIXED 🔥) */}
-      <section id="contact" className="py-16 px-6 text-center">
-
-        <h2 className="text-2xl md:text-3xl font-bold mb-6">
-          Get in Touch
-        </h2>
+        <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
 
         <div className="flex flex-col md:flex-row justify-center gap-4">
 
           <a
             href="https://wa.me/9613917624"
-            target="_blank"
-            className="bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600 transition"
+            className="bg-green-500 text-white px-6 py-3 rounded-xl"
           >
             WhatsApp
           </a>
 
           <a
             href="mailto:Fatimafarhat779@gmail.com"
-            className="bg-gray-800 text-white px-6 py-3 rounded-xl hover:bg-gray-900 transition"
+            className="bg-gray-800 text-white px-6 py-3 rounded-xl"
           >
             Email
           </a>
@@ -220,10 +216,10 @@ export default function Home() {
 
       </section>
 
-      {/* FLOAT BUTTON */}
+      {/* FLOATING BUTTON */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 bg-[#f97316] text-white px-5 py-3 rounded-full shadow-lg"
+        className="fixed bottom-6 right-6 bg-orange-500 text-white px-5 py-3 rounded-full shadow-lg"
       >
         Book
       </button>
