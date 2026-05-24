@@ -102,6 +102,33 @@ export default function Home() {
 
       </section>
 
+      {/* INTRO VIDEO */}
+      <section className="bg-white py-16 md:py-20 px-6 text-center">
+        <div className="max-w-4xl mx-auto">
+
+          <p className="text-[#f97316] font-semibold mb-2">
+            MEET YOUR TEACHER
+          </p>
+
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            A Message from Ms. Fatima
+          </h2>
+
+          <p className="text-gray-600 mb-8">
+            Watch this short introduction before booking your free trial session.
+          </p>
+
+          <video
+            controls
+            className="w-full rounded-2xl shadow-xl border"
+          >
+            <source src="/intro.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+        </div>
+      </section>
+
       {/* ABOUT */}
       <section id="about" className="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
 
@@ -166,6 +193,51 @@ export default function Home() {
 
         </div>
 
+      </section>
+
+      {/* IMPORTANT RULES */}
+      <section className="bg-[#f9f7f4] py-16 md:py-20 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+
+          <p className="text-[#f97316] font-semibold mb-2">
+            IMPORTANT INFORMATION
+          </p>
+
+          <h2 className="text-2xl md:text-3xl font-bold mb-10">
+            قواعد الدورة والإلتزام
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6 text-right">
+
+            {[
+              "يُرجى الالتزام بالوقت المتفق عليه وعدم إلغاء الحصة قبل وقت قصير. في الحالات الضرورية أو المرضية يجب إعلام الأستاذ مسبقاً.",
+
+              "في حال تكرار إلغاء الحصص من قبل التلميذ، لا يتم تعويض الحصص وتُحتسب ضمن الدورة.",
+
+              "في حال قام الأستاذ بإلغاء أي حصة، يتم تعويضها تلقائياً عبر تمديد مدة الدورة.",
+
+              "يتم الدفع كاملاً قبل بدء الدورة عبر WHISH Money على رقم التواصل المعتمد.",
+
+              "لا يمكن أن تتجاوز مدة الدورة شهر وأسبوعين، ويجب الالتزام بهذه المدة.",
+
+              "يحق للتلميذ التواصل مع الأستاذ في أي وقت للاستفسار عن أي سؤال متعلق باللغة الإنجليزية حتى خارج وقت الحصة.",
+
+              "يجب الالتزام بحل الواجبات والمتابعة لضمان أفضل النتائج والتطور.",
+
+              "‼️ بعد تأكيد الاشتراك بالدورة لا يمكن استرداد المبلغ تحت أي ظرف، ويمكن تحويل الحصص لمشترك آخر."
+            ].map((rule, i) => (
+              <div
+                key={i}
+                className="bg-white p-5 rounded-2xl border shadow-sm hover:shadow-md transition"
+              >
+                <p className="text-gray-700 leading-8">
+                  {rule}
+                </p>
+              </div>
+            ))}
+
+          </div>
+        </div>
       </section>
 
       {/* TESTIMONIALS */}
