@@ -27,6 +27,7 @@ export default function Home() {
             <a href="#home" className="hover:text-[#f97316]">Home</a>
             <a href="#about" className="hover:text-[#f97316]">About</a>
             <a href="#services" className="hover:text-[#f97316]">Services</a>
+            <a href="#pricing" className="hover:text-[#f97316]">Pricing</a>
             <a href="#contact" className="hover:text-[#f97316]">Contact</a>
           </div>
 
@@ -166,6 +167,52 @@ export default function Home() {
 
       </section>
 
+      {/* WHO THIS IS FOR */}
+      <section className="bg-white py-16 md:py-20 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+
+          <p className="text-[#f97316] font-semibold mb-2">
+            WHO IS THIS FOR?
+          </p>
+
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Lessons Designed for Your Goal
+          </h2>
+
+          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
+            Whether you are a beginner, student, or professional, the lessons are personalized to help you improve step by step.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+
+            {[
+              {
+                title: "Beginners",
+                text: "For learners who want to build a strong foundation in English from the beginning."
+              },
+              {
+                title: "Speaking Confidence",
+                text: "For students who understand English but struggle to speak naturally and confidently."
+              },
+              {
+                title: "School, Work & Exams",
+                text: "For learners preparing for school, university, work, interviews, or English exams."
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.04 }}
+                className="bg-[#f9f7f4] p-6 rounded-2xl border shadow-sm hover:shadow-lg transition"
+              >
+                <h3 className="font-bold text-lg mb-3">{item.title}</h3>
+                <p className="text-gray-600 text-sm leading-7">{item.text}</p>
+              </motion.div>
+            ))}
+
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section id="services" className="bg-white py-16 md:py-20 px-6">
 
@@ -193,6 +240,87 @@ export default function Home() {
 
         </div>
 
+      </section>
+
+      {/* PRICING */}
+      <section id="pricing" className="bg-[#f9f7f4] py-16 md:py-20 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+
+          <p className="text-[#f97316] font-semibold mb-2">
+            PRICING
+          </p>
+
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Choose the Package That Fits You
+          </h2>
+
+          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
+            All lessons are private, live on Zoom, and personalized based on the student’s level and goal.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+
+            {[
+              {
+                title: "Starter Package",
+                lessons: "8 حصص",
+                price: "140 دولار",
+                schedule: "حصتان أسبوعياً",
+                highlight: false
+              },
+              {
+                title: "Progress Package",
+                lessons: "14 حصة",
+                price: "260 دولار",
+                schedule: "3 - 4 حصص أسبوعياً",
+                highlight: true
+              },
+              {
+                title: "Intensive Package",
+                lessons: "18 حصة",
+                price: "300 دولار",
+                schedule: "4 - 5 حصص أسبوعياً",
+                highlight: false
+              }
+            ].map((plan, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.04 }}
+                className={`relative p-6 rounded-2xl border shadow-sm transition bg-white ${
+                  plan.highlight ? "border-[#f97316] shadow-lg" : ""
+                }`}
+              >
+                {plan.highlight && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#f97316] text-white text-xs px-4 py-1 rounded-full">
+                    Most Popular
+                  </div>
+                )}
+
+                <h3 className="font-bold text-xl mb-3">{plan.title}</h3>
+
+                <p className="text-3xl font-bold text-[#f97316] mb-2">
+                  {plan.price}
+                </p>
+
+                <p className="text-gray-700 mb-2">
+                  {plan.lessons}
+                </p>
+
+                <p className="text-gray-500 text-sm mb-6">
+                  {plan.schedule}
+                </p>
+
+                <button
+                  onClick={() => setOpen(true)}
+                  className="w-full bg-[#f97316] text-white py-3 rounded-xl hover:bg-[#ea580c] transition"
+                >
+                  Book Free Trial
+                </button>
+              </motion.div>
+            ))}
+
+          </div>
+        </div>
       </section>
 
       {/* IMPORTANT RULES */}
