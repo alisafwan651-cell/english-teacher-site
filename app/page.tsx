@@ -417,7 +417,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-center gap-4">
 
           <a
-            href="https://wa.me/9613917624"
+            href="https://wa.me/17012912707"
             className="bg-green-500 text-white px-6 py-3 rounded-xl"
           >
             WhatsApp
