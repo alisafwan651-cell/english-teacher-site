@@ -286,9 +286,8 @@ export default function Home() {
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.04 }}
-                className={`relative p-6 rounded-2xl border shadow-sm transition bg-white ${
-                  plan.highlight ? "border-[#f97316] shadow-lg" : ""
-                }`}
+                className={`relative p-6 rounded-2xl border shadow-sm transition bg-white ${plan.highlight ? "border-[#f97316] shadow-lg" : ""
+                  }`}
               >
                 {plan.highlight && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#f97316] text-white text-xs px-4 py-1 rounded-full">
@@ -310,12 +309,18 @@ export default function Home() {
                   {plan.schedule}
                 </p>
 
-                <button
-                  onClick={() => setOpen(true)}
-                  className="w-full bg-[#f97316] text-white py-3 rounded-xl hover:bg-[#ea580c] transition"
+                <a
+                  href={
+                    i === 0
+                      ? "/agreement?package=starter"
+                      : i === 1
+                        ? "/agreement?package=progress"
+                        : "/agreement?package=intensive"
+                  }
+                  className="block w-full bg-[#f97316] text-white py-3 rounded-xl hover:bg-[#ea580c] transition"
                 >
-                  Book Free Trial
-                </button>
+                  Continue to Agreement
+                </a>
               </motion.div>
             ))}
 
