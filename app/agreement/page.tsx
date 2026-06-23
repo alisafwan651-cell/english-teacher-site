@@ -20,7 +20,7 @@ const packages = {
   intensive: {
     name: "Intensive Package",
     lessons: "18 حصة",
-    welcomePrice: "210 دولار",
+    welcomePrice: "250 دولار",
     regularPrice: "300 دولار",
     schedule: "4 - 5 حصص أسبوعياً",
   },
