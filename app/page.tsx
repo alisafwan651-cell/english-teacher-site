@@ -1,48 +1,52 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { PopupModal } from "react-calendly";
 import { motion } from "framer-motion";
 
+const TRIAL_PAYMENT_LINK =
+  "https://buy.stripe.com/9B66oHgYd1Xb3bm3Wa4c800";
+
 export default function Home() {
-  const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <main className="bg-[#f9f7f4] text-gray-900">
-
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 w-full bg-white border-b z-50 shadow-sm">
         <div className="max-w-6xl mx-auto flex justify-between items-center px-4 md:px-6 py-4">
-
           <h1 className="font-bold text-sm md:text-lg">
             Ms. Fatima Farhat
           </h1>
 
           <div className="hidden md:flex gap-6 text-sm">
-            <a href="#home" className="hover:text-[#f97316]">Home</a>
-            <a href="#about" className="hover:text-[#f97316]">About</a>
-            <a href="#services" className="hover:text-[#f97316]">Services</a>
-            <a href="#pricing" className="hover:text-[#f97316]">Pricing</a>
-            <a href="#contact" className="hover:text-[#f97316]">Contact</a>
+            <a href="#home" className="hover:text-[#f97316]">
+              Home
+            </a>
+            <a href="#about" className="hover:text-[#f97316]">
+              About
+            </a>
+            <a href="#services" className="hover:text-[#f97316]">
+              Services
+            </a>
+            <a href="#pricing" className="hover:text-[#f97316]">
+              Pricing
+            </a>
+            <a href="#contact" className="hover:text-[#f97316]">
+              Contact
+            </a>
           </div>
 
-          <button
-            onClick={() => setOpen(true)}
-            className="bg-[#f97316] text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base"
+          <a
+            href={TRIAL_PAYMENT_LINK}
+            className="bg-[#f97316] text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base hover:bg-[#ea580c] transition"
           >
-            Book Trial
-          </button>
+            Book Trial — 5 USD
+          </a>
         </div>
       </nav>
 
       {/* HERO */}
-      <section id="home" className="text-center px-6 pt-28 md:pt-32 pb-20 max-w-4xl mx-auto">
-
+      <section
+        id="home"
+        className="text-center px-6 pt-28 md:pt-32 pb-20 max-w-4xl mx-auto"
+      >
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -70,13 +74,13 @@ export default function Home() {
           Master English with 11 years of expert teaching experience.
         </motion.p>
 
-        <div className="flex flex-col md:flex-row justify-center gap-4 mb-12">
-          <button
-            onClick={() => setOpen(true)}
+        <div className="flex flex-col md:flex-row justify-center gap-4">
+          <a
+            href={TRIAL_PAYMENT_LINK}
             className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:bg-[#ea580c] transition transform hover:scale-105"
           >
-            Book Free Trial
-          </button>
+            Pay 5 USD & Book Trial
+          </a>
 
           <a
             href="#contact"
@@ -86,27 +90,35 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="flex justify-center gap-6 md:gap-14 text-center">
+        <p className="mt-4 text-sm text-gray-500">
+          Trial session: 5 USD — securely charged as €4.37.
+        </p>
+
+        <p className="mt-2 text-sm font-medium text-[#f97316]">
+          Complete your trial and unlock an exclusive 30% welcome discount.
+        </p>
+
+        <div className="flex justify-center gap-6 md:gap-14 text-center mt-12">
           <div>
             <p className="text-xl md:text-2xl font-bold">11+</p>
             <p className="text-gray-500 text-xs md:text-sm">Years</p>
           </div>
+
           <div>
             <p className="text-xl md:text-2xl font-bold">200+</p>
             <p className="text-gray-500 text-xs md:text-sm">Students</p>
           </div>
+
           <div>
             <p className="text-xl md:text-2xl font-bold">100%</p>
             <p className="text-gray-500 text-xs md:text-sm">Success</p>
           </div>
         </div>
-
       </section>
 
       {/* INTRO VIDEO */}
       <section className="bg-white py-16 md:py-20 px-6 text-center">
         <div className="max-w-4xl mx-auto">
-
           <p className="text-[#f97316] font-semibold mb-2">
             MEET YOUR TEACHER
           </p>
@@ -116,23 +128,21 @@ export default function Home() {
           </h2>
 
           <p className="text-gray-600 mb-8">
-            Watch this short introduction before booking your free trial session.
+            Watch this short introduction before booking your trial session.
           </p>
 
-          <video
-            controls
-            className="w-full rounded-2xl shadow-xl border"
-          >
+          <video controls className="w-full rounded-2xl shadow-xl border">
             <source src="/intro.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-
         </div>
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center">
-
+      <section
+        id="about"
+        className="max-w-6xl mx-auto px-6 py-16 md:py-20 grid md:grid-cols-2 gap-10 items-center"
+      >
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -161,16 +171,15 @@ export default function Home() {
         >
           <img
             src="/fatima.jpg"
+            alt="Ms. Fatima Farhat"
             className="rounded-2xl shadow-xl w-full max-w-[320px] mx-auto"
           />
         </motion.div>
-
       </section>
 
       {/* WHO THIS IS FOR */}
       <section className="bg-white py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
-
           <p className="text-[#f97316] font-semibold mb-2">
             WHO IS THIS FOR?
           </p>
@@ -180,24 +189,24 @@ export default function Home() {
           </h2>
 
           <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
-            Whether you are a beginner, student, or professional, the lessons are personalized to help you improve step by step.
+            Whether you are a beginner, student, or professional, the lessons
+            are personalized to help you improve step by step.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
-
             {[
               {
                 title: "Beginners",
-                text: "For learners who want to build a strong foundation in English from the beginning."
+                text: "For learners who want to build a strong foundation in English from the beginning.",
               },
               {
                 title: "Speaking Confidence",
-                text: "For students who understand English but struggle to speak naturally and confidently."
+                text: "For students who understand English but struggle to speak naturally and confidently.",
               },
               {
                 title: "School, Work & Exams",
-                text: "For learners preparing for school, university, work, interviews, or English exams."
-              }
+                text: "For learners preparing for school, university, work, interviews, or English exams.",
+              },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -208,86 +217,104 @@ export default function Home() {
                 <p className="text-gray-600 text-sm leading-7">{item.text}</p>
               </motion.div>
             ))}
-
           </div>
         </div>
       </section>
 
       {/* SERVICES */}
       <section id="services" className="bg-white py-16 md:py-20 px-6">
-
         <div className="text-center mb-12">
           <p className="text-[#f97316] font-semibold mb-2">SERVICES</p>
+
           <h2 className="text-2xl md:text-3xl font-bold">
             English Lessons for Every Goal
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {["General English", "Business English", "Exam Preparation"].map(
+            (title, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="p-6 rounded-xl border hover:shadow-lg transition"
+              >
+                <h3 className="font-bold mb-2">{title}</h3>
 
-          {["General English", "Business English", "Exam Preparation"].map((title, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 rounded-xl border hover:shadow-lg transition"
-            >
-              <h3 className="font-bold mb-2">{title}</h3>
-              <p className="text-gray-600 text-sm">
-                High-quality personalized lessons.
-              </p>
-            </motion.div>
-          ))}
-
+                <p className="text-gray-600 text-sm">
+                  High-quality personalized lessons.
+                </p>
+              </motion.div>
+            )
+          )}
         </div>
-
       </section>
 
       {/* PRICING */}
       <section id="pricing" className="bg-[#f9f7f4] py-16 md:py-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
-
-          <p className="text-[#f97316] font-semibold mb-2">
-            PRICING
-          </p>
+          <p className="text-[#f97316] font-semibold mb-2">PRICING</p>
 
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Choose the Package That Fits You
           </h2>
 
-          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
-            All lessons are private, live on Zoom, and personalized based on the student’s level and goal.
+          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            All lessons are private, live on Zoom, and personalized based on
+            the student’s level and goal.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="max-w-3xl mx-auto mb-12 bg-white border border-[#f97316] rounded-2xl p-6 shadow-sm">
+            <p className="font-semibold text-[#f97316]">
+              Exclusive Welcome Offer
+            </p>
 
+            <h3 className="text-xl md:text-2xl font-bold mt-2">
+              Unlock 30% Off Your First Package
+            </h3>
+
+            <p className="text-gray-600 mt-2">
+              Complete your 20-minute trial session, then receive an exclusive
+              30% welcome discount when you join your first package.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 title: "Starter Package",
                 lessons: "8 حصص",
-                price: "140 دولار",
+                welcomePrice: "98 دولار",
+                regularPrice: "140 دولار",
                 schedule: "حصتان أسبوعياً",
-                highlight: false
+                highlight: false,
+                slug: "starter",
               },
               {
                 title: "Progress Package",
                 lessons: "14 حصة",
-                price: "260 دولار",
+                welcomePrice: "182 دولار",
+                regularPrice: "260 دولار",
                 schedule: "3 - 4 حصص أسبوعياً",
-                highlight: true
+                highlight: true,
+                slug: "progress",
               },
               {
                 title: "Intensive Package",
                 lessons: "18 حصة",
-                price: "300 دولار",
+                welcomePrice: "210 دولار",
+                regularPrice: "300 دولار",
                 schedule: "4 - 5 حصص أسبوعياً",
-                highlight: false
-              }
-            ].map((plan, i) => (
+                highlight: false,
+                slug: "intensive",
+              },
+            ].map((plan) => (
               <motion.div
-                key={i}
+                key={plan.slug}
                 whileHover={{ scale: 1.04 }}
-                className={`relative p-6 rounded-2xl border shadow-sm transition bg-white ${plan.highlight ? "border-[#f97316] shadow-lg" : ""
-                  }`}
+                className={`relative p-6 rounded-2xl border shadow-sm transition bg-white ${
+                  plan.highlight ? "border-[#f97316] shadow-lg" : ""
+                }`}
               >
                 {plan.highlight && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#f97316] text-white text-xs px-4 py-1 rounded-full">
@@ -295,35 +322,35 @@ export default function Home() {
                   </div>
                 )}
 
-                <h3 className="font-bold text-xl mb-3">{plan.title}</h3>
+                <h3 className="font-bold text-xl mb-4">{plan.title}</h3>
 
-                <p className="text-3xl font-bold text-[#f97316] mb-2">
-                  {plan.price}
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#f97316]">
+                  Welcome Offer — 30% Off
                 </p>
 
-                <p className="text-gray-700 mb-2">
-                  {plan.lessons}
+                <p className="text-3xl font-bold text-[#f97316] mt-1 mb-2">
+                  {plan.welcomePrice}
                 </p>
+
+                <p className="text-sm text-gray-500 mb-4">
+                  Regular price:{" "}
+                  <span className="line-through">{plan.regularPrice}</span>
+                </p>
+
+                <p className="text-gray-700 mb-2">{plan.lessons}</p>
 
                 <p className="text-gray-500 text-sm mb-6">
                   {plan.schedule}
                 </p>
 
                 <a
-                  href={
-                    i === 0
-                      ? "/agreement?package=starter"
-                      : i === 1
-                        ? "/agreement?package=progress"
-                        : "/agreement?package=intensive"
-                  }
+                  href={`/agreement?package=${plan.slug}&offer=welcome`}
                   className="block w-full bg-[#f97316] text-white py-3 rounded-xl hover:bg-[#ea580c] transition"
                 >
-                  Continue to Agreement
+                  Choose This Package
                 </a>
               </motion.div>
             ))}
-
           </div>
         </div>
       </section>
@@ -331,7 +358,6 @@ export default function Home() {
       {/* IMPORTANT RULES */}
       <section className="bg-[#f9f7f4] py-16 md:py-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
-
           <p className="text-[#f97316] font-semibold mb-2">
             IMPORTANT INFORMATION
           </p>
@@ -341,86 +367,72 @@ export default function Home() {
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6 text-right">
-
             {[
               "يُرجى الالتزام بالوقت المتفق عليه وعدم إلغاء الحصة قبل وقت قصير. في الحالات الضرورية أو المرضية يجب إعلام الأستاذ مسبقاً.",
-
               "في حال تكرار إلغاء الحصص من قبل التلميذ، لا يتم تعويض الحصص وتُحتسب ضمن الدورة.",
-
               "في حال قام الأستاذ بإلغاء أي حصة، يتم تعويضها تلقائياً عبر تمديد مدة الدورة.",
-
-              "يتم الدفع كاملاً قبل بدء الدورة عبر WHISH Money على رقم التواصل المعتمد.",
-
+              "يتم الدفع كاملاً قبل بدء الدورة عبر طريقة الدفع المعتمدة التي يتم الاتفاق عليها بعد الجلسة التجريبية.",
               "لا يمكن أن تتجاوز مدة الدورة شهر وأسبوعين، ويجب الالتزام بهذه المدة.",
-
               "يحق للتلميذ التواصل مع الأستاذ في أي وقت للاستفسار عن أي سؤال متعلق باللغة الإنجليزية حتى خارج وقت الحصة.",
-
               "يجب الالتزام بحل الواجبات والمتابعة لضمان أفضل النتائج والتطور.",
-
-              "‼️ بعد تأكيد الاشتراك بالدورة لا يمكن استرداد المبلغ تحت أي ظرف، ويمكن تحويل الحصص لمشترك آخر."
+              "‼️ بعد تأكيد الاشتراك بالدورة لا يمكن استرداد المبلغ تحت أي ظرف، ويمكن تحويل الحصص لمشترك آخر.",
             ].map((rule, i) => (
               <div
                 key={i}
                 className="bg-white p-5 rounded-2xl border shadow-sm hover:shadow-md transition"
               >
-                <p className="text-gray-700 leading-8">
-                  {rule}
-                </p>
+                <p className="text-gray-700 leading-8">{rule}</p>
               </div>
             ))}
-
           </div>
         </div>
       </section>
 
       {/* TESTIMONIALS */}
       <section className="py-16 md:py-20 px-6 text-center bg-[#fff]">
-
         <h2 className="text-2xl md:text-3xl font-bold mb-10">
           What Students Say
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-
           {[
             "Amazing teacher, I improved fast!",
             "Very professional and clear explanations.",
-            "Helped me pass my IELTS exam."
+            "Helped me pass my IELTS exam.",
           ].map((text, i) => (
             <div key={i} className="p-6 border rounded-xl">
               <p>"{text}"</p>
             </div>
           ))}
-
         </div>
-
       </section>
 
       {/* CTA */}
       <section className="bg-[#f97316] text-white py-16 md:py-20 px-6 text-center">
-
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
           Ready to Transform Your English?
         </h2>
 
-        <button
-          onClick={() => setOpen(true)}
-          className="bg-white text-[#f97316] px-6 py-3 rounded-xl font-semibold"
-        >
-          Book Your Free Trial
-        </button>
+        <p className="mb-6 text-orange-50">
+          Start with a paid 5 USD trial session and get 30% off your first
+          package.
+        </p>
 
+        <a
+          href={TRIAL_PAYMENT_LINK}
+          className="inline-block bg-white text-[#f97316] px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
+        >
+          Pay 5 USD & Book Trial
+        </a>
       </section>
 
       {/* CONTACT */}
       <section id="contact" className="py-16 md:py-20 px-6 text-center">
-
         <h2 className="text-2xl md:text-3xl font-bold mb-6">
           Get in Touch
         </h2>
 
         <div className="flex flex-col md:flex-row justify-center gap-4">
-
           <a
             href="https://wa.me/17012912707"
             className="bg-green-500 text-white px-6 py-3 rounded-xl"
@@ -434,29 +446,16 @@ export default function Home() {
           >
             Email
           </a>
-
         </div>
-
       </section>
 
-      {/* FLOATING BUTTON */}
-      <button
-        onClick={() => setOpen(true)}
+      {/* FLOATING TRIAL BUTTON */}
+      <a
+        href={TRIAL_PAYMENT_LINK}
         className="fixed bottom-6 right-6 bg-[#f97316] text-white px-5 py-3 rounded-full shadow-lg hover:scale-110 transition z-50"
       >
-        Book
-      </button>
-
-      {/* CALENDLY */}
-      {mounted && (
-        <PopupModal
-          url="https://calendly.com/fatimafarhat779/30min"
-          onModalClose={() => setOpen(false)}
-          open={open}
-          rootElement={document.body}
-        />
-      )}
-
+        Trial — 5 USD
+      </a>
     </main>
   );
 }
