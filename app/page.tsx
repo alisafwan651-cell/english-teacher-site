@@ -37,7 +37,7 @@ export default function Home() {
             href={TRIAL_PAYMENT_LINK}
             className="bg-[#f97316] text-white px-3 md:px-4 py-2 rounded-lg text-sm md:text-base hover:bg-[#ea580c] transition"
           >
-            Book Trial — 5 USD
+            Book Trial — 20 USD
           </a>
         </div>
       </nav>
@@ -79,7 +79,7 @@ export default function Home() {
             href={TRIAL_PAYMENT_LINK}
             className="bg-[#f97316] text-white px-6 py-3 rounded-xl hover:bg-[#ea580c] transition transform hover:scale-105"
           >
-            Pay 5 USD & Book Trial
+            Pay 20 USD & Book Trial
           </a>
 
           <a
@@ -91,11 +91,11 @@ export default function Home() {
         </div>
 
         <p className="mt-4 text-sm text-gray-500">
-          Trial session: 5 USD — securely charged as €4.37.
+          Trial session: 20 USD — 60-minute Zoom level assessment.
         </p>
 
         <p className="mt-2 text-sm font-medium text-[#f97316]">
-          Complete your trial and unlock an exclusive 30% welcome discount.
+          After your trial, choose the monthly or level package that fits your goal.
         </p>
 
         <div className="flex justify-center gap-6 md:gap-14 text-center mt-12">
@@ -259,98 +259,172 @@ export default function Home() {
             Choose the Package That Fits You
           </h2>
 
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+          <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
             All lessons are private, live on Zoom, and personalized based on
             the student’s level and goal.
           </p>
 
-          <div className="max-w-3xl mx-auto mb-12 bg-white border border-[#f97316] rounded-2xl p-6 shadow-sm">
-            <p className="font-semibold text-[#f97316]">
-              Exclusive Welcome Offer
+          {/* MONTHLY PACKAGES */}
+          <div className="mb-10">
+            <p className="text-[#f97316] font-semibold mb-2">
+              MONTHLY PACKAGES
             </p>
 
-            <h3 className="text-xl md:text-2xl font-bold mt-2">
-              Unlock 30% Off Your First Package
+            <h3 className="text-xl md:text-2xl font-bold mb-8">
+              Build consistency with weekly private lessons
             </h3>
 
-            <p className="text-gray-600 mt-2">
-              Complete your 20-minute trial session, then receive an exclusive
-              30% welcome discount when you join your first package.
-            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Starter Monthly Package",
+                  lessons: "8 sessions",
+                  price: "140 دولار",
+                  schedule: "2 sessions per week",
+                  duration: "1 month",
+                  perSession: "17.50 دولار per session",
+                  highlight: false,
+                  slug: "monthly8",
+                },
+                {
+                  title: "Progress Monthly Package",
+                  lessons: "12 sessions",
+                  price: "210 دولار",
+                  schedule: "3 sessions per week",
+                  duration: "1 month",
+                  perSession: "17.50 دولار per session",
+                  highlight: true,
+                  slug: "monthly12",
+                },
+                {
+                  title: "Intensive Monthly Package",
+                  lessons: "16 sessions",
+                  price: "280 دولار",
+                  schedule: "4 sessions per week",
+                  duration: "1 month",
+                  perSession: "17.50 دولار per session",
+                  highlight: false,
+                  slug: "monthly16",
+                },
+              ].map((plan) => (
+                <motion.div
+                  key={plan.slug}
+                  whileHover={{ scale: 1.04 }}
+                  className={`relative p-6 rounded-2xl border shadow-sm transition bg-white ${
+                    plan.highlight ? "border-[#f97316] shadow-lg" : ""
+                  }`}
+                >
+                  {plan.highlight && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#f97316] text-white text-xs px-4 py-1 rounded-full">
+                      Most Popular
+                    </div>
+                  )}
+
+                  <h3 className="font-bold text-xl mb-4">{plan.title}</h3>
+
+                  <p className="text-3xl font-bold text-[#f97316] mb-2">
+                    {plan.price}
+                  </p>
+
+                  <p className="text-gray-700 mb-2">{plan.lessons}</p>
+
+                  <p className="text-gray-500 text-sm mb-2">
+                    {plan.schedule}
+                  </p>
+
+                  <p className="text-gray-500 text-sm mb-4">
+                    Duration: {plan.duration}
+                  </p>
+
+                  <p className="text-sm font-medium text-[#f97316] mb-6">
+                    {plan.perSession}
+                  </p>
+
+                  <a
+                    href={`/agreement?package=${plan.slug}`}
+                    className="block w-full bg-[#f97316] text-white py-3 rounded-xl hover:bg-[#ea580c] transition"
+                  >
+                    Choose This Package
+                  </a>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Starter Package",
-                lessons: "8 حصص",
-                welcomePrice: "98 دولار",
-                regularPrice: "140 دولار",
-                schedule: "حصتان أسبوعياً",
-                highlight: false,
-                slug: "starter",
-              },
-              {
-                title: "Progress Package",
-                lessons: "14 حصة",
-                welcomePrice: "182 دولار",
-                regularPrice: "260 دولار",
-                schedule: "3 - 4 حصص أسبوعياً",
-                highlight: true,
-                slug: "progress",
-              },
-              {
-                title: "Intensive Package",
-                lessons: "18 حصة",
-                welcomePrice: "250 دولار",
-                regularPrice: "300 دولار",
-                schedule: "4 - 5 حصص أسبوعياً",
-                highlight: false,
-                slug: "intensive",
-              },
-            ].map((plan) => (
-              <motion.div
-                key={plan.slug}
-                whileHover={{ scale: 1.04 }}
-                className={`relative p-6 rounded-2xl border shadow-sm transition bg-white ${
-                  plan.highlight ? "border-[#f97316] shadow-lg" : ""
-                }`}
-              >
-                {plan.highlight && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#f97316] text-white text-xs px-4 py-1 rounded-full">
-                    Most Popular
-                  </div>
-                )}
+          {/* LEVEL PACKAGES */}
+          <div className="mt-20">
+            <p className="text-[#f97316] font-semibold mb-2">
+              FULL LEVEL PACKAGES
+            </p>
 
-                <h3 className="font-bold text-xl mb-4">{plan.title}</h3>
+            <h3 className="text-xl md:text-2xl font-bold mb-4">
+              For students who want a clear long-term result
+            </h3>
 
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#f97316]">
-                  Welcome Offer — 30% Off
-                </p>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+              These packages are designed to complete full learning levels with
+              structured follow-up and consistent weekly progress.
+            </p>
 
-                <p className="text-3xl font-bold text-[#f97316] mt-1 mb-2">
-                  {plan.welcomePrice}
-                </p>
-
-                <p className="text-sm text-gray-500 mb-4">
-                  Regular price:{" "}
-                  <span className="line-through">{plan.regularPrice}</span>
-                </p>
-
-                <p className="text-gray-700 mb-2">{plan.lessons}</p>
-
-                <p className="text-gray-500 text-sm mb-6">
-                  {plan.schedule}
-                </p>
-
-                <a
-                  href={`/agreement?package=${plan.slug}&offer=welcome`}
-                  className="block w-full bg-[#f97316] text-white py-3 rounded-xl hover:bg-[#ea580c] transition"
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {[
+                {
+                  title: "Complete One Full Level",
+                  lessons: "32 sessions",
+                  price: "500 دولار",
+                  schedule: "Around 3 sessions per week",
+                  duration: "2.5 months",
+                  perSession: "Only 15.63 دولار per session",
+                  slug: "full-level",
+                },
+                {
+                  title: "Complete Two Full Levels",
+                  lessons: "64 sessions",
+                  price: "1000 دولار",
+                  schedule: "Around 3 sessions per week",
+                  duration: "5 months",
+                  perSession: "Only 15.63 دولار per session",
+                  slug: "two-levels",
+                },
+              ].map((plan) => (
+                <motion.div
+                  key={plan.slug}
+                  whileHover={{ scale: 1.03 }}
+                  className="relative p-7 rounded-2xl border border-[#f97316] shadow-md transition bg-white"
                 >
-                  Choose This Package
-                </a>
-              </motion.div>
-            ))}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#f97316] text-white text-xs px-4 py-1 rounded-full">
+                    Best Value
+                  </div>
+
+                  <h3 className="font-bold text-xl mb-4">{plan.title}</h3>
+
+                  <p className="text-4xl font-bold text-[#f97316] mb-2">
+                    {plan.price}
+                  </p>
+
+                  <p className="text-gray-700 mb-2">{plan.lessons}</p>
+
+                  <p className="text-gray-500 text-sm mb-2">
+                    {plan.schedule}
+                  </p>
+
+                  <p className="text-gray-500 text-sm mb-4">
+                    Duration: {plan.duration}
+                  </p>
+
+                  <p className="text-sm font-medium text-[#f97316] mb-6">
+                    {plan.perSession}
+                  </p>
+
+                  <a
+                    href={`/agreement?package=${plan.slug}`}
+                    className="block w-full bg-[#f97316] text-white py-3 rounded-xl hover:bg-[#ea580c] transition"
+                  >
+                    Choose Level Package
+                  </a>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -372,7 +446,7 @@ export default function Home() {
               "في حال تكرار إلغاء الحصص من قبل التلميذ، لا يتم تعويض الحصص وتُحتسب ضمن الدورة.",
               "في حال قام الأستاذ بإلغاء أي حصة، يتم تعويضها تلقائياً عبر تمديد مدة الدورة.",
               "يتم الدفع كاملاً قبل بدء الدورة عبر طريقة الدفع المعتمدة التي يتم الاتفاق عليها بعد الجلسة التجريبية.",
-              "لا يمكن أن تتجاوز مدة الدورة شهر وأسبوعين، ويجب الالتزام بهذه المدة.",
+              "مدة كل باقة تختلف حسب عدد الحصص والهدف، ويجب الالتزام بالخطة المتفق عليها لإنهاء الدورة ضمن الوقت المحدد.",
               "يحق للتلميذ التواصل مع الأستاذ في أي وقت للاستفسار عن أي سؤال متعلق باللغة الإنجليزية حتى خارج وقت الحصة.",
               "يجب الالتزام بحل الواجبات والمتابعة لضمان أفضل النتائج والتطور.",
               "‼️ بعد تأكيد الاشتراك بالدورة لا يمكن استرداد المبلغ تحت أي ظرف، ويمكن تحويل الحصص لمشترك آخر.",
@@ -414,15 +488,15 @@ export default function Home() {
         </h2>
 
         <p className="mb-6 text-orange-50">
-          Start with a paid 5 USD trial session and get 30% off your first
-          package.
+          Start with a paid 20 USD trial session and choose the package that
+          matches your goal.
         </p>
 
         <a
           href={TRIAL_PAYMENT_LINK}
           className="inline-block bg-white text-[#f97316] px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
         >
-          Pay 5 USD & Book Trial
+          Pay 20 USD & Book Trial
         </a>
       </section>
 
@@ -454,7 +528,7 @@ export default function Home() {
         href={TRIAL_PAYMENT_LINK}
         className="fixed bottom-6 right-6 bg-[#f97316] text-white px-5 py-3 rounded-full shadow-lg hover:scale-110 transition z-50"
       >
-        Trial — 5 USD
+        Trial — 20 USD
       </a>
     </main>
   );
