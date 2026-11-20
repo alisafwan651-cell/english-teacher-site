@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 const TRIAL_PAYMENT_LINK =
-  "https://buy.stripe.com/9B66oHgYd1Xb3bm3Wa4c800";
+  "https://buy.stripe.com/dRm00j4br9pDaDO1O24c801";
 
 export default function Home() {
   return (
